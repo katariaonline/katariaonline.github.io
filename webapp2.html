@@ -1,5 +1,43 @@
 <html><head>
-  
+  <script>
+    const start = () => {
+  // Initialize the JavaScript client library
+  gapi.client.init({
+    'apiKey': 'AIzaSyDc29uBONfkwqfl7mAHHdzDhXUlirLCjHM',
+    'discoveryDocs': ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+  }).then(() => {
+    return gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '1fbkV5DoPdgBuVoOUCCuYnzzOiqIkSKVyNMkbDMhihlw',
+      range: 'HKSheet!A1:B4', // for example: List 1!A1:B6
+    })
+  }).then((response) => {
+    // Parse the response data
+    const loadedData = response.result.values;
+
+    // populate HTML table with data
+    const table = document.getElementsByTagName('table')[0];
+    
+    // add column headers
+    const columnHeaders = document.createElement('tr');
+    columnHeaders.innerHTML = `<th>${loadedData[0][0]}</th>
+<th>${loadedData[0][1]}</th>`;
+    table.appendChild(columnHeaders);
+
+    // add table data rows
+    for (let i = 1; i < loadedData.length; i++) {
+      const tableRow = document.createElement('tr');
+      tableRow.innerHTML = `<td>${loadedData[i][0]}</td>
+<td>${loadedData[i][1]}</td>`;
+      table.appendChild(tableRow);
+    }
+  }).catch((err) => {
+  	console.log(err.error.message);
+  });
+};
+
+// Load the JavaScript client library
+gapi.load('client', start);
+  </script>
 <body><div id="tbl">
   <table>
     <caption>Sales volume</caption>
