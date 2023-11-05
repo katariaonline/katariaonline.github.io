@@ -32,7 +32,13 @@ caption {
   letter-spacing: 1px;
 }
 </style>
-  <script>
+ 
+<body onload="hk()"><div id="tbl">
+  <table>
+    <caption>Sales volume</caption>
+  </table>
+</div>
+ <script>
     function hk() {
       
     const start = () => {
@@ -73,10 +79,5 @@ caption {
 // Load the JavaScript client library
 gapi.load('client', start);
     }
-  </script>
-<body onload="hk()"><div id="tbl">
-  <table>
-    <caption>Sales volume</caption>
-  </table>
-</div></body></head>
+  </script></body></head>
 </html>
