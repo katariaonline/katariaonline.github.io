@@ -34,6 +34,9 @@ caption {
   letter-spacing: 1px;
 }
 </style>
+    <input type="text" name="example" list="exampleList">
+<datalist id="exampleList">
+</datalist>
     <script src="https://apis.google.com/js/api.js"></script>
 <script>
 
@@ -50,7 +53,7 @@ caption {
   }).then(function(response) {
     // Parse the response data
     const loadedData = response.result.values;
-
+document.getElementsbyTagName('example') = loadedData;
     // populate HTML table with data
     const table = document.getElementsByTagName('table')[0];
     
